@@ -1,0 +1,25 @@
+npm i react-router-dom
+npm i react-redux
+npm i redux
+npm i redux-thunk
+npm i history@4.10.0
+
+npm i axios
+
+npm i lodash
+npm i tailwindcss 
+( npm install -D tailwindcss )
+npx tailwindcss init 
+npx tailwindcss --full ( sử dụng trong file tailwind.config.js ) 
+chỉnh lại file tailwind.config.js : module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ]
+  }
+
+
+npm i moment
+npm i antd
+npm i formik yup
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA1MCIsIkhldEhhblN0cmluZyI6IjE0LzAxLzIwMjQiLCJIZXRIYW5UaW1lIjoiMTcwNTE5MDQwMDAwMCIsIm5iZiI6MTY3NzQzMDgwMCwiZXhwIjoxNzA1MzM4MDAwfQ.k7Kzay9-bYUjN7pTcMrYpgTq5Xe5U6jdvM1OUQ5L_2A

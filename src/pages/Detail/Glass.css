@@ -1,0 +1,19 @@
+.glassmorphism {
+    position: relative;
+}
+.glassmorphism::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-color: #ffffff1f;
+    backdrop-filter: blur(10px);
+}
+
+
+.detail__film__content {
+    position: absolute;
+    z-index: 10!important;
+}

@@ -1,0 +1,1 @@
+export const SET_THONG_TIN_DANG_KY = 'SET_THONG_TIN_DANG_KY';
