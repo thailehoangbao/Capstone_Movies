@@ -82,15 +82,15 @@ export default function FilmAdmin() {
       dataIndex: 'hanhDong',
       render: (words,films) => {
         return <Fragment>
-          <NavLink to="/"><EditOutlined className='p-2 text-green-600 text-lg text-right'/></NavLink>
-          <NavLink to="/"><DeleteOutlined className='p-2 text-red-700 text-lg text-right'/></NavLink>
+          <NavLink key={5} to={`/admin/films/edit/${films.maPhim}`}><EditOutlined className='p-2 text-green-600 text-lg text-right'/></NavLink>
+          <NavLink  key={6} to="/"><DeleteOutlined className='p-2 text-red-700 text-lg text-right'/></NavLink>
 
         </Fragment>
       },
       width: '15%'
     }
   ];
-  const data = arrFilmDefaulft
+  const data = arrFilmDefaulft;
   const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
   };

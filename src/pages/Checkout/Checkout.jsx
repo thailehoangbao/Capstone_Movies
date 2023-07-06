@@ -114,8 +114,13 @@ export default function Checkout(props) {
                             const thongTinDatVe = new ThongTinDatVe();
                             thongTinDatVe.maLichChieu = props.match.params.id*1;
                             thongTinDatVe.danhSachVe = danhSachGheDangDat;
-                            console.log(thongTinDatVe);
-                            dispatch(quanLyDatVeAction(thongTinDatVe));
+
+                            const request = {
+                                maLichChieu:  thongTinDatVe.maLichChieu,
+                                danhSachVe :thongTinDatVe.danhSachVe
+                            }
+                            console.log(request);
+                            dispatch(quanLyDatVeAction(request));
                         }}  className='bg-green-500 text-white py-2 w-full rounded-md cursor-pointer' >
                             ĐẶT VÉ
                         </button>

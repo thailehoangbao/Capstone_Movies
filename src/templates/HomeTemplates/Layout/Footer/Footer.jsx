@@ -8,8 +8,6 @@ export default function Footer() {
 
     const arrHeThongRapPhim = _.map(heThongRapPhim, (heThongRap) => _.pick(heThongRap, ['maHeThongRap', 'tenHeThongRap', 'logo']));
 
-    console.log("arr", arrHeThongRapPhim)
-
 
     return (
         <footer className="px-4 divide-y dark:bg-gray-800 dark:text-gray-100 bg-slate-800">

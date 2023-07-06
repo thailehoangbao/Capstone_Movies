@@ -16,7 +16,6 @@ export default function HomeMenu(props) {
     };
 
     const renderHeThongRap = () => {
-        console.log(props.heThongRapPhim)
         return props.heThongRapPhim.map((heThongRap, index) => {
             let tabPosition = 'left';
             return (<TabPane tab={<img src={heThongRap.logo} className='rounded-full w-10'></img>} key={index}>

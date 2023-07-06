@@ -21,6 +21,7 @@ import Dashboard from './pages/Admin/Dashboard/Dashboard';
 import Showtime from './pages/Admin/Showtime/Showtime';
 import FilmAdmin from './pages/Admin/Films/FilmAdmin';
 import AddNew from './pages/Admin/Films/AddNewFilm/AddNew';
+import EditAdmin from './pages/Admin/Films/EditFilm/EditAdmin';
 
 // const CheckoutTemplateLazy = lazy(() => import('./templates/CheckoutTemplates/CheckoutTemplate'));
 
@@ -50,6 +51,7 @@ function App() {
       <AdminTemplates path="/admin/users" exact Component={Dashboard}/>
       <AdminTemplates path="/admin/films" exact Component={FilmAdmin}/>
       <AdminTemplates path="/admin/films/addnew" exact Component={AddNew}/>
+      <AdminTemplates path="/admin/films/edit/:id" exact Component={EditAdmin}/>
       <AdminTemplates path="/admin/showtimes" exact Component={Showtime}/>
 
     </Router>
