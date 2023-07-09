@@ -63,8 +63,8 @@ export default function Detail(props) {
                                                             <p className='text-white font-thin text-md'>{cumRap.diaChi}</p>
                                                             <div>
                                                                 {cumRap.lichChieuPhim?.map((lichChieuPhim, index) => {
-                                                                    return <NavLink to={`/checkout/${lichChieuPhim.maLichChieu}`} className='text-green-500 text-2xl p' key={index}>
-                                                                        {moment(lichChieuPhim.ngayChieuGioChieu).format("DD/MM/YYYY hh:mm")}
+                                                                    return <NavLink to={`/checkout/${lichChieuPhim.maLichChieu}`} className='text-green-500 text-lg p-2 hover:no-underline hover:text-white' key={index}>
+                                                                        {moment(lichChieuPhim.ngayChieuGioChieu).format("HH:MM A DD/MM/YYYY")}
                                                                     </NavLink>
                                                                 })}
                                                             </div>

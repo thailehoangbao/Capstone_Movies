@@ -1,1 +1,2 @@
 export const GET_CHI_TIET_PHONG_VE = 'GET_CHI_TIET_PHONG_VE';
+export const CHUYEN_TABS = 'CHUYEN_TABS';

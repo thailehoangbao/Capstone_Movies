@@ -68,8 +68,6 @@ export const layThongTinPhimEditAction = (id) => {
 
 export const capNhatPhimAction = (formData) => {
 
-
-
     return async (dispatch) => {
         try {
             const result = await quanlyPhimService.capNhatPhimUpdate(formData);
@@ -82,6 +80,24 @@ export const capNhatPhimAction = (formData) => {
                 });
             };
     
+    
+        } catch (error) {
+            console.log('error:', error);
+        };
+    };
+}
+
+
+export const xoaPhimAction = (maPhim) => {
+
+    return async (dispatch) => {
+        try {
+            const result = await quanlyPhimService.xoaPhimAdmin(maPhim);
+            console.log("xoaPhim",result);
+            //Lấy dữ liệu xong đưa lên reducer
+            alert('Xóa Phim Thành Công !');
+            // Sau khi xóa load lại danh sách phim
+            dispatch(layDanhSachPhimAction());
     
         } catch (error) {
             console.log('error:', error);

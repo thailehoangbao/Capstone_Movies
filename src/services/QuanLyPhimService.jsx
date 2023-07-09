@@ -18,12 +18,16 @@ export class QuanLyPhimService extends baseService {
         return this.post(`/api/QuanLyPhim/ThemPhimUploadHinh`,formData);
     }
 
-    layThongTinPhimEdit = (id) => {
-        return this.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`);
+    layThongTinPhimEdit = (maPhim) => {
+        return this.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`);
     }
 
     capNhatPhimUpdate = (formData) => {
         return this.post(`/api/QuanLyPhim/CapNhatPhimUpload`,formData);
+    }
+
+    xoaPhimAdmin = (maPhim) => {
+        return this.delete(`/api/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`);
     }
 }
 

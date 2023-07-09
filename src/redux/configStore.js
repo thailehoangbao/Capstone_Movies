@@ -5,6 +5,7 @@ import { QuanLyPhimReducer } from './reducers/QuanLyPhimReducer';
 import { QuanLyHeThongRapReducer } from './reducers/QuanLyHeThongRapReducer';
 import { QuanLyNguoiDungReducer } from './reducers/QuanLyNguoiDungReducer';
 import { QuanLyDatVeReducer } from './reducers/QuanLyDatVeReducer';
+import { LoadingReducer } from './reducers/LoandingReducer';
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     QuanLyPhimReducer: QuanLyPhimReducer,
     QuanLyHeThongRapReducer: QuanLyHeThongRapReducer,
     QuanLyNguoiDungReducer: QuanLyNguoiDungReducer,
-    QuanLyDatVeReducer: QuanLyDatVeReducer
+    QuanLyDatVeReducer: QuanLyDatVeReducer,
+    LoadingReducer: LoadingReducer
 });
 
 export const store = createStore(rootReducer,applyMiddleware(thunk));

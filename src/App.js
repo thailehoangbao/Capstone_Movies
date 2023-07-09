@@ -33,6 +33,7 @@ function App() {
 
   return (
     <Router history={history}>
+      <LoadingPage />
       <Hometemplate path="/home" exact Component={Home} />
       <Hometemplate path="/contact" exact Component={Contact} />
       <Hometemplate path="/new" exact Component={New} />
@@ -43,9 +44,6 @@ function App() {
       <UserTemplate path="/login" exact Component={Login}/>
 
       <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} />
-      {/* <Suspense fallback={<LoadingPage />}>
-        <CheckoutTemplateLazy path="/checkout/:id" exact Component={Checkout} />
-      </Suspense> */}
 
       <AdminTemplates path="/admin" exact Component={Dashboard}/>
       <AdminTemplates path="/admin/users" exact Component={Dashboard}/>

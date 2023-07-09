@@ -1,5 +1,5 @@
-import { DAT_VE } from "../actions/types/DatVeType";
-import { GET_CHI_TIET_PHONG_VE } from "../actions/types/QuanLyDatVeType"
+import { DAT_VE, DAT_VE_HOAN_TAT } from "../actions/types/DatVeType";
+import { CHUYEN_TABS, GET_CHI_TIET_PHONG_VE } from "../actions/types/QuanLyDatVeType"
 
 
 
@@ -8,7 +8,8 @@ const stateDefault = {
     chiTietPhongVe: {
 
     },
-    danhSachGheDangDat: []
+    danhSachGheDangDat: [],
+    tabActive: '1'
 }
 
 
@@ -18,6 +19,8 @@ export const QuanLyDatVeReducer = (state = stateDefault ,action) => {
             state.chiTietPhongVe = action.chiTietPhongVe;
             return {...state}
         }
+
+
         case DAT_VE: {
             //Cập nhật danh sách ghế cập nhật
             let danhSachGheUpdate = [...state.danhSachGheDangDat];
@@ -33,6 +36,20 @@ export const QuanLyDatVeReducer = (state = stateDefault ,action) => {
 
             return {...state}
         }
+
+
+        case DAT_VE_HOAN_TAT : {
+            state.danhSachGheDangDat = [];
+            return {...state}
+        }
+
+
+        case CHUYEN_TABS : {
+            state.tabActive = action.number;
+            return {...state}
+        }
+
+
         default : return {...state}
     }
 }

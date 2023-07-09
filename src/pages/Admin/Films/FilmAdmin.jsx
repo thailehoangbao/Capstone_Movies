@@ -3,7 +3,7 @@ import { Button, Table } from 'antd';
 import { AudioOutlined, DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { layDanhSachPhimAction } from '../../../redux/actions/QuanLyPhimAction';
+import { layDanhSachPhimAction, xoaPhimAction } from '../../../redux/actions/QuanLyPhimAction';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import { history } from '../../../App';
 const { Search } = Input;
@@ -18,11 +18,8 @@ export default function FilmAdmin() {
   const { arrFilmDefaulft } = useSelector(state => state.QuanLyPhimReducer);
   const dispatch = useDispatch();
 
-  console.log("arrFilmDefaulft", arrFilmDefaulft);
-
   useEffect(() => {
     dispatch(layDanhSachPhimAction());
-
   }, [])
 
 
@@ -83,8 +80,13 @@ export default function FilmAdmin() {
       render: (words,films) => {
         return <Fragment>
           <NavLink key={5} to={`/admin/films/edit/${films.maPhim}`}><EditOutlined className='p-2 text-green-600 text-lg text-right'/></NavLink>
-          <NavLink  key={6} to="/"><DeleteOutlined className='p-2 text-red-700 text-lg text-right'/></NavLink>
-
+          <span className='cursor-pointer' key={6} onClick={()=>{
+            //gọi action xóa
+            if (window.confirm(`Bạn chắc chắn xóa Phim ${films.tenPhim} này!?`)) {
+              //gọi action
+              dispatch(xoaPhimAction(films.maPhim));
+            }
+          }}><DeleteOutlined className='p-2 text-red-700 text-lg text-right'/></span>
         </Fragment>
       },
       width: '15%'
@@ -92,7 +94,7 @@ export default function FilmAdmin() {
   ];
   const data = arrFilmDefaulft;
   const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
+    // console.log('params', pagination, filters, sorter, extra);
   };
 
 
@@ -112,7 +114,7 @@ export default function FilmAdmin() {
         onSearch={onSearch}
         className='mt-2 mb-4'
       />
-      <Table columns={columns} dataSource={data} onChange={onChange} />
+      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maPhim"}/>
     </div>
   )
 }
