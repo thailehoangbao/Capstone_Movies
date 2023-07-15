@@ -1,18 +1,17 @@
 import React, { Fragment, useEffect } from 'react';
 import style from './Checkout.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { layDanhSachPhongVeAction, quanLyDatVeAction } from '../../redux/actions/QuanLyDatVeAction';
+import { datVeWebRocketAction, layDanhSachPhongVeAction, quanLyDatVeAction } from '../../redux/actions/QuanLyDatVeAction';
 import { CloseCircleOutlined, UserOutlined, RollbackOutlined } from '@ant-design/icons';
-import { DAT_VE } from '../../redux/actions/types/DatVeType';
 import _ from 'lodash';
 import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe';
 import { Tabs } from 'antd';
 import TabPane from 'antd/es/tabs/TabPane';
-import { Tab } from 'bootstrap';
 import { layThongTinNguoiDungAction } from '../../redux/actions/QuanLyNguoiDungDangKyAction';
 import moment from 'moment';
 import { history } from '../../App';
 import { CHUYEN_TABS } from '../../redux/actions/types/QuanLyDatVeType';
+import { connection } from '../../index'
 
 
 
@@ -21,15 +20,19 @@ function Checkout(props) {
     const { Component, ...restProps } = props;
     const dispatch = useDispatch();
 
-    const { chiTietPhongVe, danhSachGheDangDat } = useSelector(state => state.QuanLyDatVeReducer);
+    const { chiTietPhongVe, danhSachGheDangDat, danhSachGheKhachDat } = useSelector(state => state.QuanLyDatVeReducer);
+
     const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer);
 
     useEffect(() => {
         let { id } = props.match.params;
         const action = layDanhSachPhongVeAction(id);
 
-
         dispatch(action);
+        //load danh sách ghế đã đặt từ backend trả về
+        connection.on('loadDanhSachGheKhachDaDat', (dsGheKhachDat) => {
+            console.log("dsGheKhachDat", dsGheKhachDat);
+        })
     }, []);
 
     const { thongTinPhim, danhSachGhe } = chiTietPhongVe;
@@ -44,6 +47,15 @@ function Checkout(props) {
             let viTriDangChon = danhSachGheDangDat.findIndex(gheDD => gheDD.maGhe === ghe.maGhe);
             let gheDaDuocDat = '';
 
+
+            //kiểm tra từng ghế render xem có phải ghế khách đặt hay kg
+            let gheKhachDat = '';
+            let vitriGheKhachDat = danhSachGheKhachDat.findIndex(gheKD => gheKD.maGhe === ghe.maGhe);
+            if (vitriGheKhachDat !== -1) {
+                gheKhachDat = 'gheKhachDangDat';
+            }
+
+
             if (userLogin.taiKhoan === ghe.taiKhoanNguoiDat) {
                 gheDaDuocDat = 'gheDaDuocDat';
             }
@@ -56,7 +68,7 @@ function Checkout(props) {
             }
 
             const iconCloseCircleOutlined = (ghe) => {
-                if (gheDaDuocDat !== '') {
+                if (gheDaDuocDat || gheKhachDat !== '') {
                     return <UserOutlined style={{ marginBottom: 5 }} />
                 } else {
                     if (ghe.daDat === true) {
@@ -70,20 +82,15 @@ function Checkout(props) {
                 <Fragment key={index}>
                     {ghe.loaiGhe === "Vip" ?
                         <button onClick={() => {
-                            dispatch({
-                                type: DAT_VE,
-                                gheDuocChon: ghe
-                            })
-                        }} disabled={ghe.daDat} className={`${style['gheVip']} ${style['ghe']} ${style[`${gheDaDat}`]} ${style[`${gheDangDat}`]} ${style[`${gheDaDuocDat}`]}`} key={index}>
+                            const action = datVeWebRocketAction(ghe, props.match.params.id);
+                            dispatch(action);
+                        }} disabled={ghe.daDat || gheKhachDat !== ''} className={`${style['gheVip']} ${style['ghe']} ${style[`${gheDaDat}`]} ${style[`${gheDangDat}`]} ${style[`${gheDaDuocDat}`]} ${style[`${gheKhachDat}`]}`} key={index}>
                             {iconCloseCircleOutlined(ghe)}
                         </button> :
-                        <button
-                            onClick={() => {
-                                dispatch({
-                                    type: DAT_VE,
-                                    gheDuocChon: ghe
-                                })
-                            }} disabled={ghe.daDat} className={`${style['ghe']} ${style[`${gheDaDat}`]} ${style[`${gheDangDat}`]} ${style[`${gheDaDuocDat}`]}`} key={index}>
+                        <button onClick={() => {
+                            const action = datVeWebRocketAction(ghe, props.match.params.id);
+                            dispatch(action);
+                        }} disabled={ghe.daDat || gheKhachDat !== ''} className={`${style['ghe']} ${style[`${gheDaDat}`]} ${style[`${gheDangDat}`]} ${style[`${gheDaDuocDat}`]} ${style[`${gheKhachDat}`]}`} key={index}>
                             {iconCloseCircleOutlined(ghe)}
                         </button>}
                     {(index + 1) % 16 === 0 ? <br /> : ''}
@@ -118,6 +125,7 @@ function Checkout(props) {
                                     <th>Ghế Đã Đặt</th>
                                     <th>Ghế Bạn Đã Chọn</th>
                                     <th>Ghế Đang Chọn</th>
+                                    <th>Ghế Khách Đang Đặt</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -136,6 +144,9 @@ function Checkout(props) {
                                     </td>
                                     <td>
                                         <button className={`${style['ghe']} ${style['gheDangDat']}`}>00</button>
+                                    </td>
+                                    <td>
+                                        <button className={`${style['ghe']} ${style['gheKhachDangDat']}`}><UserOutlined style={{ marginBottom: 5 }} /></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -225,7 +236,7 @@ function LichSuDatVe(props) {
 
 
     const renderTicketItems = () => {
-        return thongTinNguoiDung.thongTinDatVe?.map((phim,index) => {
+        return thongTinNguoiDung.thongTinDatVe?.map((phim, index) => {
 
             const seats = _.first(phim.danhSachGhe)
 
@@ -237,9 +248,9 @@ function LichSuDatVe(props) {
                         <h2 className="text-gray-900 title-font font-medium">{phim.tenPhim}</h2>
                         <p className="text-gray-500 font-thin text-xs">Thời gian đặt: {moment(phim.ngayDat).format('hh:mm A DD/MM/YYYY')}</p>
                         <p className='text-gray-500 font-thin text-xs'>Địa điểm: {seats.tenCumRap} - {seats.tenHeThongRap}</p>
-                        <p className='text-gray-500 font-thin text-xs'>Ghế: {phim.danhSachGhe?.slice(0,4).map((soGhe,index) => {
+                        <p className='text-gray-500 font-thin text-xs'>Ghế: {phim.danhSachGhe?.slice(0, 4).map((soGhe, index) => {
                             return <span key={index} className='p-1 text-red-600'>{`[${soGhe.tenGhe}]`}</span>
-                        })} <span className='text-blue-600 cursor-pointer' onClick={() =>{
+                        })} <span className='text-blue-600 cursor-pointer' onClick={() => {
                             history.push(`/`);
                         }}><RollbackOutlined /></span> </p>
                     </div>

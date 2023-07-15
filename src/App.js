@@ -50,7 +50,7 @@ function App() {
       <AdminTemplates path="/admin/films" exact Component={FilmAdmin}/>
       <AdminTemplates path="/admin/films/addnew" exact Component={AddNew}/>
       <AdminTemplates path="/admin/films/edit/:id" exact Component={EditAdmin}/>
-      <AdminTemplates path="/admin/showtimes" exact Component={Showtime}/>
+      <AdminTemplates path="/admin/films/showtimes/:id" exact Component={Showtime}/>
 
     </Router>
   );

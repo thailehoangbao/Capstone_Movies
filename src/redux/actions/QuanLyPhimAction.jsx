@@ -2,13 +2,13 @@ import { quanlyPhimService } from "../../services/QuanLyPhimService";
 import { CAP_NHAT_PHIM, SET_DANH_SACH_PHIM, THEM_PHIM_UPLOAD_HINH, THONG_TIN_PHIM_EDIT } from "./types/QuanLyPhimType";
 
 
-export const layDanhSachPhimAction = () => {
+export const layDanhSachPhimAction = (tenPhim='') => {
 
 
 
     return async (dispatch) => {
         try {
-            const result = await quanlyPhimService.layDanhSachPhim();
+            const result = await quanlyPhimService.layDanhSachPhim(tenPhim);
             //Lấy dữ liệu xong đưa lên reducer
             dispatch({
                 type: SET_DANH_SACH_PHIM,

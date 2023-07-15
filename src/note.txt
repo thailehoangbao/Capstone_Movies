@@ -4,6 +4,9 @@ npm i redux
 npm i redux-thunk
 npm i history@4.10.0
 
+npm install styled-components
+(cài đặt ở web https://styled-components.com/docs/basics)
+
 npm i axios
 
 npm i lodash
@@ -17,10 +20,12 @@ chỉnh lại file tailwind.config.js : module.exports = {
   ]
   }
 
-
+123@111
+12345678
 npm i moment
 npm i antd
 npm i formik yup
+npm i @aspnet/signalr ( chạy realtime)
 
 npm install antd@latest dayjs@latest ( sử dụng DatePicker)
 

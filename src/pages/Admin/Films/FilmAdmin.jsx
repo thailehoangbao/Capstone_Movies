@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { Button, Table } from 'antd';
-import { AudioOutlined, DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
+import { AudioOutlined, DeleteOutlined, EditOutlined, SearchOutlined,CopyOutlined, CalendarOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { layDanhSachPhimAction, xoaPhimAction } from '../../../redux/actions/QuanLyPhimAction';
@@ -23,7 +23,13 @@ export default function FilmAdmin() {
   }, [])
 
 
-  const onSearch = (value) => console.log(value);
+  const onSearch = (value) => {
+    // gọi api lấy danh sách phim
+    dispatch(layDanhSachPhimAction(value));
+
+  };
+
+
   const columns = [
     {
       title: 'Tên Phim',
@@ -68,25 +74,32 @@ export default function FilmAdmin() {
       sorter: (a, b) => a.moTa - b.moTa,
       sortDirections: ["descend", "ascend"],
       width: '35%',
-      render: (words,films) => {
+      render: (words, films) => {
         return <Fragment>
-          {films.moTa.length >40 ? films.moTa.substr(0,40) + '...' :films.moTa}
+          {films.moTa.length > 40 ? films.moTa.substr(0, 40) + '...' : films.moTa}
         </Fragment>
       }
     },
     {
       title: 'Action',
       dataIndex: 'hanhDong',
-      render: (words,films) => {
+      render: (words, films) => {
         return <Fragment>
-          <NavLink key={5} to={`/admin/films/edit/${films.maPhim}`}><EditOutlined className='p-2 text-green-600 text-lg text-right'/></NavLink>
-          <span className='cursor-pointer' key={6} onClick={()=>{
+          <NavLink key={5} to={`/admin/films/edit/${films.maPhim}`}>
+            <EditOutlined className='p-2 text-green-600 text-lg text-right' />
+          </NavLink>
+          <span className='cursor-pointer' key={6} onClick={() => {
             //gọi action xóa
             if (window.confirm(`Bạn chắc chắn xóa Phim ${films.tenPhim} này!?`)) {
               //gọi action
               dispatch(xoaPhimAction(films.maPhim));
             }
-          }}><DeleteOutlined className='p-2 text-red-700 text-lg text-right'/></span>
+          }}>
+            <DeleteOutlined className='p-2 text-red-700 text-lg text-right' />
+          </span>
+          <NavLink key={5} to={`/admin/films/showtimes/${films.maPhim}`}>
+            <CalendarOutlined />
+          </NavLink>
         </Fragment>
       },
       width: '15%'
@@ -102,7 +115,7 @@ export default function FilmAdmin() {
   return (
     <div>
       <h3 className='text-left mb-1 text-2xl font-bold'>Quản lý Phim</h3>
-      <Button className='mb-2' onClick={()=> {
+      <Button className='mb-2' onClick={() => {
         history.push('/admin/films/addnew')
       }}>Thêm Phim</Button>
       <Search
@@ -114,7 +127,7 @@ export default function FilmAdmin() {
         onSearch={onSearch}
         className='mt-2 mb-4'
       />
-      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maPhim"}/>
+      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maPhim"} />
     </div>
   )
 }

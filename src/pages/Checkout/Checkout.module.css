@@ -39,3 +39,8 @@
     border: 2px solid #3241e7;
     color: white!important;
 }
+
+.gheKhachDangDat {
+    background-color:#06f4e8 !important;
+    cursor: no-drop;
+}

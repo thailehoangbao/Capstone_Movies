@@ -9,6 +9,13 @@ const stateDefault = {
 
     },
     danhSachGheDangDat: [],
+    danhSachGheKhachDat: [
+    {
+        maGhe: 52517,
+    },
+    {
+        maGhe: 52518,
+    }],
     tabActive: '1'
 }
 

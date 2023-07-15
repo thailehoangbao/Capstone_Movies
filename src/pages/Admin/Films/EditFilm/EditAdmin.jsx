@@ -1,16 +1,11 @@
 import React, { useEffect } from 'react';
 import {
-    Button,
-    Cascader,
     DatePicker,
     Form,
     Input,
     InputNumber,
     Radio,
-    Select,
-    Space,
     Switch,
-    TreeSelect,
 } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -19,9 +14,7 @@ import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { capNhatPhimAction, layThongTinPhimEditAction } from '../../../../redux/actions/QuanLyPhimAction';
 import { GROUPID } from '../../../../utils/settings/config';
-import moment from 'moment';
 dayjs.extend(customParseFormat);
-
 const { RangePicker } = DatePicker;
 
 const dateFormat = 'YYYY/MM/DD';
