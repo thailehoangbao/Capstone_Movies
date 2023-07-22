@@ -35,12 +35,10 @@ export const QuanLyPhimReducer = (state = stateDefaults,action ) => {
         }
         case SET_FILM_DANG_CHIEU: {
             state.arrFilm = state.arrFilmDefaulft.filter( (film,index) => film.dangChieu === action.dangChieu );
-            console.log("123",state.arrFilm)
             return {...state}
         }
         case SET_FILM_SAP_CHIEU: {
             state.arrFilm = state.arrFilmDefaulft.filter( (film,index) => film.sapChieu === action.sapChieu );
-            console.log("456",state.arrFilm)
             return {...state}
         }
         case SET_CHI_TIET_PHIM: {

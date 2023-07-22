@@ -14,14 +14,18 @@ export const layDanhSachPhongVeAction = (maLichChieu) => {
 
     return async (dispatch) => {
         try {
+
+            dispatch(DISPLAY_LOADING_ACTION);
+
+
             const result = await quanlyDatVeService.layChiTietPhongVe(maLichChieu);
-            console.log("phongve", result);
             //Lấy dữ liệu xong đưa lên reducer
             if (result.status === 200) {
                 dispatch({
                     type: GET_CHI_TIET_PHONG_VE,
                     chiTietPhongVe: result.data.content
                 });
+                await dispatch(HIDE_LOADING_ACTION);
             }
         } catch (error) {
             console.log('error:', error);
@@ -36,7 +40,7 @@ export const quanLyDatVeAction = (thongTinDatVe) => {
     return async (dispatch) => {
         try {
 
-            dispatch(DISPLAY_LOADING_ACTION)
+            dispatch(DISPLAY_LOADING_ACTION);
 
 
             const result = await quanlyDatVeService.datVe(thongTinDatVe);
@@ -54,7 +58,7 @@ export const quanLyDatVeAction = (thongTinDatVe) => {
             //Clear danh sách ghế đang đặt
             await dispatch({ type: DAT_VE_HOAN_TAT })
 
-            await dispatch(HIDE_LOADING_ACTION)
+            await dispatch(HIDE_LOADING_ACTION);
 
             await dispatch({ type: CHUYEN_TABS, number: '2' })
 
@@ -82,8 +86,6 @@ export const taoLichChieuAction = (thongTinLichChieu) => {
 
 export const datVeWebRocketAction = (ghe,maLichChieu) => {
 
-
-
     //Do sử dụng redux thunk nên có 2 tham số trả ra là dispatch và getState ( giúp chúng ta lấy dữ liệu từ store reducer)
     return async (dispatch,getState) => {
         try {
@@ -102,8 +104,9 @@ export const datVeWebRocketAction = (ghe,maLichChieu) => {
             console.log("maLichChieu",maLichChieu);
             //Biến mảng thành chuỗi
             danhSachGheDangDat = JSON.stringify(danhSachGheDangDat);
+            console.log("danhSachGheDangDat - 2",danhSachGheDangDat);
             //Call Api của signalR 
-            connection.invoke('datGhe',taiKhoan,danhSachGheDangDat,maLichChieu);
+            // connection.invoke('datGhe',taiKhoan,danhSachGheDangDat,maLichChieu);
 
         } catch (error) {
             console.log("errors :", error);

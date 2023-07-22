@@ -6,7 +6,6 @@ export const UserTemplate = (props) => {
     const {Component,...restProps} = props;
 
 
-
     return <Route {...restProps} render={(propsRoute) => {//path , exact, component
         return <Fragment >
             <section className="bg-gray-50 min-h-screen flex items-center justify-center">

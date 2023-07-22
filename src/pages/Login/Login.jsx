@@ -23,7 +23,7 @@ export default function Login(props) {
     return <form onSubmit={formik.handleSubmit} className="md:w-1/2 px-8 md:px-16">
         <h2 className="font-bold text-2xl text-[#002D74]">Login</h2>
         <p className="text-xs mt-4 text-[#002D74]">If you are already a member, easily log in</p>
-        <div  className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4">
             <input className="p-2 mt-8 rounded-xl border" type="text" name="taiKhoan" placeholder="User Name" onChange={formik.handleChange} />
             <div className="relative">
                 <input className="p-2 rounded-xl border w-full" onChange={formik.handleChange} type="text" name="matKhau" placeholder="Password" />
@@ -32,7 +32,8 @@ export default function Login(props) {
                     <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                 </svg>
             </div>
-            <button className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">Đăng Nhập</button>
+
+            <button className="bg-[#002D74] rounded-xl btn text-white py-2 hover:scale-105 duration-300" >Đăng Nhập</button>
         </div>
         <div className="mt-6 grid grid-cols-3 items-center text-gray-400">
             <hr className="border-gray-400" />

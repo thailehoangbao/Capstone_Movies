@@ -7,8 +7,6 @@ export default function Film_Flip(props) {
 
     const { film } = props;
 
-
-
     return (
         <div className="flip-card mb-5" style={{ width: 200, height: 300 }}>
             <div className="flip-card-inner w-full">

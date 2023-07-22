@@ -1,32 +1,20 @@
 import React from 'react';
 import {
-    Button,
-    Cascader,
     DatePicker,
     Form,
     Input,
     InputNumber,
     Radio,
-    Select,
-    Space,
     Switch,
-    TreeSelect,
 } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { themPhimUploadHinhAction } from '../../../../redux/actions/QuanLyPhimAction';
 import { GROUPID } from '../../../../utils/settings/config';
 dayjs.extend(customParseFormat);
-
-const { RangePicker } = DatePicker;
-
-const dateFormat = 'YYYY/MM/DD';
-const weekFormat = 'MM/DD';
-const monthFormat = 'YYYY/MM';
 
 /** Manually entering any of the following formats will perform date parsing */
 const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
@@ -39,7 +27,7 @@ export default function AddNew(props) {
             tenPhim: "",
             trailer: "",
             moTa: "",
-            maNhom: 'GP00',
+            maNhom: GROUPID,
             ngayKhoiChieu: "",
             sapChieu: false,
             dangChieu: false,

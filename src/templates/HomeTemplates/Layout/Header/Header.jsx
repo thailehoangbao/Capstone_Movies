@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom';
 import { history } from '../../../../App';
-
+import './HeaderCSS.css';
 export default function Header(props) {
     return (
         <header className="p-4 dark:bg-gray-800 dark:text-gray-100 bg-opacity-40 bg-black text-white fixed w-full z-10">
@@ -10,16 +10,16 @@ export default function Header(props) {
                     <img src="https://printgo.vn/uploads/file-logo/1/512x512.22cdafa36d7ed05664bdb0a0699771c2.ai.1.png" style={{ width: '64px', height: '50px' }} alt="567" />
                 </NavLink>
                 <ul className="items-stretch hidden space-x-3 lg:flex">
-                    <li className="flex">
-                        <NavLink to="/home" className="flex items-center px-4 -mb-1 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
+                    <li className="flex justify-center items-center" style={{width:"80px",height:"40px"}}>
+                        <NavLink activeClassName="activeHomeItem" to="/home" className="flex items-center px-4 -mb-1 dark:border-transparent dark:text-violet-400 dark:border-violet-400 navLink"
                             >Home</NavLink>
                     </li>
-                    <li className="flex">
-                        <NavLink to="/contact" className="flex items-center px-4 -mb-1 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
+                    <li className="flex justify-center items-center" style={{width:"80px",height:"40px"}}>
+                        <NavLink activeClassName="activeHomeItem" to="/contact" className="flex items-center px-4 -mb-1 dark:border-transparent dark:text-violet-400 dark:border-violet-400 navLink"
                             >Contact</NavLink>
                     </li>
-                    <li className="flex">
-                        <NavLink to="/new" className="flex items-center px-4 -mb-1 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
+                    <li className="flex justify-center items-center" style={{width:"80px",height:"40px"}}>
+                        <NavLink activeClassName="activeHomeItem" to="/new" className="flex items-center px-4 -mb-1 dark:border-transparent dark:text-violet-400 dark:border-violet-400 navLink"
                             >News</NavLink>
                     </li>
                 </ul>

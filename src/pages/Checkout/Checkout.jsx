@@ -204,8 +204,10 @@ function Checkout(props) {
 
 export default function (props) {
     const { tabActive } = useSelector(state => state.QuanLyDatVeReducer);
+    const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer);
     const dispatch = useDispatch();
-    return <div>
+    console.log(userLogin);
+    return <div className='container relative'>
         <Tabs defaultActiveKey='1' activeKey={tabActive} onChange={(key) => {
             dispatch({
                 type: CHUYEN_TABS,
@@ -219,6 +221,17 @@ export default function (props) {
                 <LichSuDatVe {...props} />
             </TabPane>
         </Tabs>
+        <div style={{ position: "absolute", top: "10px", right: "50px", zIndex: "1", width: "100px" }}>
+            <div className='grid grid-cols-2 w-full'>
+                <div className='col-span-1/3'>
+                    <img src={`https://i.pravatar.cc/150?u=${userLogin.taiKhoan}`} alt="" style={{ width: "30px", height: "30px", borderRadius: "50%",marginLeft:"8px" }} />
+                </div>
+                <div className='col-span-2/3 mt-1'>
+                    {userLogin.taiKhoan}
+                </div>
+            </div>
+
+        </div>
     </div>
 }
 
@@ -226,8 +239,6 @@ export default function (props) {
 function LichSuDatVe(props) {
     const dispatch = useDispatch();
     const { thongTinNguoiDung } = useSelector(state => state.QuanLyNguoiDungReducer);
-    const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer);
-    console.log("thongTinNguoiDung thành công", thongTinNguoiDung)
 
 
     useEffect(() => {

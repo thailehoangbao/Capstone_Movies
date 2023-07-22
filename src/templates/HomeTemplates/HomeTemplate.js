@@ -8,7 +8,6 @@ export const Hometemplate = (props) => {
     const {Component,...restProps} = props;
 
 
-
     return <Route {...restProps} render={(propsRoute) => {//path , exact, component
         return <Fragment >
             <Header {...propsRoute}/>

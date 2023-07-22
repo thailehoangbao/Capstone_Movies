@@ -15,10 +15,10 @@ export const dangNhapAction = (thongTinDangNhap) => {
                     thongTinDangNhap: result.data.content
                 });
 
-                // history.goBack();
+                history.goBack();
 
             }
-            console.log(result)
+            
         } catch (error) {
             console.log('error: ' + error.response.data);
         };

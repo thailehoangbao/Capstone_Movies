@@ -44,7 +44,6 @@ const MultipleRowSlick = (props) => {
         return props.arrFilm.slice(0,12).map((film, index) => {
             return (
                 <div key={index} className={`${styleSlickRow['width-item']} mt-3`}>
-                    {/* <Film film={film}/> */}
                     <Film_Flip film={film} />
                 </div>
             )
@@ -96,14 +95,6 @@ const MultipleRowSlick = (props) => {
             }}>SẮP CHIẾU</button>
             <Slider {...settings}>
                 {renderArrFilm()}
-                {/* {renderArrFilm()}
-                {renderArrFilm()}
-                {renderArrFilm()}
-                {renderArrFilm()}
-                {renderArrFilm()}
-                {renderArrFilm()}
-                {renderArrFilm()}
-                {renderArrFilm()} */}
             </Slider>
         </div>
     );

@@ -11,10 +11,10 @@
 
 /* ghế thường */
 .ghe { 
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border-radius: 5px;
-    margin: 9.8px;
+    margin: 6px;
     cursor: pointer;
     background-color: gray;
     color: white;

@@ -1,0 +1,16 @@
+.activeHomeItem {
+    width: 100px!important;
+    height: 40px!important;
+    background-color: white!important;
+    border-radius: 4px !important;
+    color: black!important;
+}
+
+.navLink {
+    transition: all 0.5s linear;
+}
+.navLink:hover {
+    text-decoration: none;
+    color: black ;
+    
+}
